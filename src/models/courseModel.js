@@ -51,6 +51,14 @@ function model(sequelize) {
       type: DataTypes.STRING,
       required: true,
     },
+    groupSize: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    softwareProvided: {
+      type: DataTypes.STRING,
+      required: true,
+    },
     isDeleted: {
       type: DataTypes.BOOLEAN,
       required: true,

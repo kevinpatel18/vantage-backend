@@ -29,30 +29,27 @@ async function register(data, file, user) {
     syllabus: data.syllabus,
     skillLevel: data.skillLevel,
     class: data.class,
+    groupSize: data.groupSize,
+    softwareProvided: data.softwareProvided,
     isDeleted: false,
   };
 
   if (file) {
     let url = await getIpfsCid(file.filename);
+    console.log("url: ", url);
 
-    newData.image = url;
+    newData.images = url;
   }
+  console.log("newData: ", newData);
   return await db.course.create(newData);
 }
 
 async function list(user, size, page) {
-  console.log("categoryId: ", categoryId);
   let limit = parseInt(size);
   let offset = parseInt(page);
   const sqlQuery = {
     where: { isDeleted: false },
     order: [["updatedAt", "DESC"]],
-    include: [
-      {
-        model: db.category,
-        as: "category",
-      },
-    ],
   };
 
   if (limit) {
@@ -94,13 +91,14 @@ async function update(data, id, file, user) {
       syllabus: data.syllabus,
       skillLevel: data.skillLevel,
       class: data.class,
-      isDeleted: false,
+      groupSize: data.groupSize,
+      softwareProvided: data.softwareProvided,
     };
 
     if (file) {
       let url = await getIpfsCid(file.filename);
 
-      newData.image = url;
+      newData.images = url;
     }
 
     await db.course.update(newData, {

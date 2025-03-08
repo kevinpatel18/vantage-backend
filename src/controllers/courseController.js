@@ -18,7 +18,7 @@ const courseAdd = (req, res) => {
 
 const courseGetAll = (req, res) => {
   courseService
-    .list(req.user, req.query.size, req.query.page, req.query.categoryId)
+    .list(req.user, req.query.size, req.query.page)
     .then((course) => {
       res.status(200).send({
         status: 200,
@@ -31,7 +31,6 @@ const courseGetAll = (req, res) => {
       });
     });
 };
-
 
 const courseUpdate = (req, res) => {
   const id = req.params.id;
