@@ -23,6 +23,14 @@ function model(sequelize) {
       type: DataTypes.STRING,
       required: true,
     },
+    city: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    phoneNo: {
+      type: DataTypes.STRING,
+      required: true,
+    },
     courseId: {
       type: DataTypes.INTEGER,
       required: true,

@@ -5,7 +5,7 @@ const { upload, uploadToFilebase } = require("../utils/upload");
 
 router.post(
   "/store",
-  upload.single("image"),
+  upload.single("filePath"),
   uploadToFilebase,
   useCaseController.useCaseAdd
 );

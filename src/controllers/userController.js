@@ -16,6 +16,7 @@ const adminUserLogin = async (req, res) => {
         if (err) {
           console.log("error", err);
         }
+        console.log("results: ", results);
         if (results == true) {
           const token = jwt.sign(
             {
@@ -34,6 +35,11 @@ const adminUserLogin = async (req, res) => {
               userDetails: checkuser,
               token: token,
             },
+          });
+        } else {
+          res.json({
+            status: false,
+            message: "Password does not Match!",
           });
         }
       });

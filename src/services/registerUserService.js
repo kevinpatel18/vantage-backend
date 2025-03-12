@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 async function register(data, user) {
   if (
-    await db.course.findOne({
+    await db.registerUser.findOne({
       where: {
         phoneNo: data.phoneNo,
         courseId: data.courseId,
@@ -17,6 +17,7 @@ async function register(data, user) {
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
+    city: data.city,
     phoneNo: data.phoneNo,
     courseId: data.courseId,
     isDeleted: false,
