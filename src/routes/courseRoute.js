@@ -20,6 +20,7 @@ router.put(
   courseController.courseUpdate
 );
 
+router.get("/listbyid/:id", courseController.courseGetById);
 router.get("/list", courseController.courseGetAll);
 router.delete("/delete/:id", verifyToken, courseController.courseDelete);
 

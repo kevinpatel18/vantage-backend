@@ -64,6 +64,21 @@ async function list(user, size, page) {
     return list;
   }
 }
+async function listbyid(user, id) {
+  const sqlQuery = {
+    where: { isDeleted: false, id: id },
+    order: [["updatedAt", "DESC"]],
+  };
+
+  console.log("sqlQuery: ", sqlQuery);
+  const list = await db.course.findOne(sqlQuery);
+
+  if (list) {
+    return list;
+  } else {
+    throw new Error("Course details are not found!");
+  }
+}
 
 async function update(data, id, file, user) {
   let checkTour = await db.course.findOne({
@@ -125,4 +140,4 @@ async function soft_delete(id, user) {
   }
 }
 
-module.exports = { register, list, update, soft_delete };
+module.exports = { register, list, update, soft_delete, listbyid };

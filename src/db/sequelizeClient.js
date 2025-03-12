@@ -38,6 +38,11 @@ async function initialize() {
   // Import models
   db.userDetails = require("../models/userDetailsModel")(sequelize);
   db.course = require("../models/courseModel")(sequelize);
+  db.contact = require("../models/contactModel")(sequelize);
+  db.registerUser = require("../models/registerModel")(sequelize);
+  db.testimonials = require("../models/testimonialsModel")(sequelize);
+  db.useCase = require("../models/useCaseModel")(sequelize);
+  db.gallery = require("../models/galleryModel")(sequelize);
 
   // Sync models with database
   try {

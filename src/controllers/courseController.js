@@ -5,13 +5,14 @@ const courseAdd = (req, res) => {
     .register(req.body, req.file, req.user)
     .then(() =>
       res.status(200).send({
-        status: 200,
+        status: true,
         data: "You have been registered successfully!.",
       })
     )
     .catch((err) =>
       res.status(400).send({
-        err_msg: err.message,
+        status: false,
+        message: err.message,
       })
     );
 };
@@ -21,13 +22,30 @@ const courseGetAll = (req, res) => {
     .list(req.user, req.query.size, req.query.page)
     .then((course) => {
       res.status(200).send({
-        status: 200,
+        status: true,
         data: course,
       });
     })
     .catch((err) => {
       res.status(400).send({
-        err_msg: err.message,
+        status: false,
+        message: err.message,
+      });
+    });
+};
+const courseGetById = (req, res) => {
+  courseService
+    .listbyid(req.user, req.params.id)
+    .then((course) => {
+      res.status(200).send({
+        status: true,
+        data: course,
+      });
+    })
+    .catch((err) => {
+      res.status(400).send({
+        status: false,
+        message: err.message,
       });
     });
 };
@@ -38,13 +56,14 @@ const courseUpdate = (req, res) => {
     .update(req.body, id, req.file, req.user)
     .then((course) => {
       res.status(200).send({
-        status: 200,
+        status: true,
         data: "Your Data has been Updated",
       });
     })
     .catch((err) => {
       res.status(400).send({
-        err_msg: err.message,
+        status: false,
+        message: err.message,
       });
     });
 };
@@ -56,7 +75,7 @@ const courseDelete = (req, res, next) => {
     .soft_delete(id, req.user)
     .then((course) =>
       res.status(200).send({
-        status: 200,
+        status: true,
         data: " Data has been deleted ! ",
       })
     )
@@ -70,6 +89,7 @@ const courseDelete = (req, res, next) => {
 module.exports = {
   courseAdd,
   courseGetAll,
+  courseGetById,
   courseUpdate,
   courseDelete,
 };
