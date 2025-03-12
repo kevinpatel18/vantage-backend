@@ -13,8 +13,10 @@ const route = require("./routes/index");
 
 app.use(
   cors({
-    origin: "*",
+    origin: true, // This allows the server to reflect the request origin
+    credentials: true, // This allows cookies to be sent with requests
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    exposedHeaders: ["Content-Length", "Authorization"],
   })
 );
 
