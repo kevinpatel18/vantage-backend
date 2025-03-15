@@ -16,11 +16,11 @@ module.exports = {
   },
 
   db: {
-    host: "vintage-pinnacle-pinnaclevintage47-c3b9.h.aivencloud.com",
-    port: "28427",
-    user: "avnadmin",
-    password: "AVNS_LqXOIkaj2outVk_9p0k",
-    database: "defaultdb",
+    host: "in-mum-web1188.main-hosting.eu",
+    port: "3306",
+    user: "u114316720_vantageadmin",
+    password: "M*]/CBp0",
+    database: "u114316720_vantage",
   },
 
   uploads: {
