@@ -58,6 +58,59 @@ const adminUserLogin = async (req, res) => {
   }
 };
 
+const getAdminDetails = async (req, res) => {
+  const list = await db.userDetails.findOne({
+    where: {
+      email: "vintagepinnacle@yopmail.com",
+      role: "admin",
+      isDeleted: false,
+    },
+  });
+  if (list) {
+    return res.json({
+      status: true,
+      data: list,
+    });
+  } else {
+    return res.json({
+      status: false,
+      message: "user Does Not Exists!",
+    });
+  }
+};
+const updateAdminProfile = async (req, res) => {
+  const checkUser = await db.userDetails.findOne({
+    where: {
+      email: req.body.email,
+      isDeleted: false,
+    },
+  });
+  if (checkUser) {
+    const newData = {
+      firstName: req.body.name,
+      email: req.body.email,
+      phoneNo: req.body.phoneNo,
+      address: req.body.address,
+    };
+
+    await db.userDetails.update(newData, {
+      where: { id: req.params.id },
+    });
+
+    return res.json({
+      status: true,
+      data: "Record Updated Succesfully!",
+    });
+  } else {
+    return res.json({
+      status: false,
+      message: "user Does Not Exists!",
+    });
+  }
+};
+
 module.exports = {
   adminUserLogin,
+  getAdminDetails,
+  updateAdminProfile,
 };

@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.post(`${root}/admin/login`, userController.adminUserLogin);
+app.get(`${root}/admin/getProile`, userController.getAdminDetails);
+app.put(`${root}/admin/updateProfile/:id`, userController.updateAdminProfile);
 
 app.use(`${root}`, route);
 app.get("/", (req, res) => {
