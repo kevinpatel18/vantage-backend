@@ -15,12 +15,12 @@ const s3Client = new S3Client({
   region: "us-east-1",
   forcePathStyle: true,
   credentials: {
-    accessKeyId: "086C35AD51616A19D509",
-    secretAccessKey: "vQuQ0yE8fIyCz4TlhU6FSbwu1hV9Ca5oiP8B9nE0",
+    accessKeyId: "2A7A23F6745B5BA5F745",
+    secretAccessKey: "MW27qLP2uBv7qkHAdsxtrbh4v14R6dejZv19RkfX",
   },
 });
 
-const BUCKET_NAME = "coffee-shop";
+const BUCKET_NAME = "vantagepinnacle";
 const FILEBASE_SUBDOMAIN = "happy-maroon-tarsier";
 
 // Configure multer to store file in memory
