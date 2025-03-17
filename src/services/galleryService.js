@@ -22,12 +22,13 @@ async function list(user, size, page) {
     where: { isDeleted: false },
     order: [["updatedAt", "DESC"]],
   };
-
+  
   if (limit) {
     sqlQuery.limit = limit;
     sqlQuery.offset = offset;
   }
-
+  
+  console.log('size: ', size);
   const list = await db.gallery.findAndCountAll(sqlQuery);
 
   if (list) {
