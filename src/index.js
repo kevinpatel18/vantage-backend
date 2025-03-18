@@ -13,12 +13,15 @@ const route = require("./routes/index");
 
 app.use(
   cors({
-    origin: true, // This allows the server to reflect the request origin
-    credentials: true, // This allows cookies to be sent with requests
+    origin: ["https://vantagepinnacle.com", "http://localhost:3000"], // Add all allowed origins
+    credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     exposedHeaders: ["Content-Length", "Authorization"],
   })
 );
+app.options('*', cors()); // Enable pre-flight for all routes
+
+
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
