@@ -61,7 +61,6 @@ const adminUserLogin = async (req, res) => {
 const getAdminDetails = async (req, res) => {
   const list = await db.userDetails.findOne({
     where: {
-      email: "vintagepinnacle@yopmail.com",
       role: "admin",
       isDeleted: false,
     },
