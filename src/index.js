@@ -13,15 +13,17 @@ const route = require("./routes/index");
 
 app.use(
   cors({
-    origin: ["https://vantagepinnacle.com", "http://localhost:3000"], // Add all allowed origins
+    origin: [
+      "https://vantagepinnacle.com",
+      "https://admin.vantagepinnacle.com",
+      "http://localhost:3000",
+    ], // Add all allowed origins
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     exposedHeaders: ["Content-Length", "Authorization"],
   })
 );
-app.options('*', cors()); // Enable pre-flight for all routes
-
-
+app.options("*", cors()); // Enable pre-flight for all routes
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
