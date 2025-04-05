@@ -9,16 +9,16 @@ async function initialize() {
   // create db if it doesn't already exist
   const { host, port, user, password, database } = config.db;
   const connection = await mysql.createConnection({
-    host,
-    port,
-    user,
-    password,
+    "in-mum-web1188.main-hosting.eu",
+    3306,
+    "u114316720_vantageadmin,
+    "M*]/CBp0",
   });
-  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+  await connection.query(`CREATE DATABASE IF NOT EXISTS \`u114316720_vantage\`;`);
 
   const sequelize = new Sequelize("u114316720_vantage", "u114316720_vantageadmin", "M*]/CBp0", {
     host: "in-mum-web1188.main-hosting.eu",
-    port: 3006,
+    port: 3306,
     dialect: "mysql",
     logging: false,
     maxConcurrentQueries: 100,
