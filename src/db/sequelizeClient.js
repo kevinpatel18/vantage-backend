@@ -11,7 +11,7 @@ async function initialize() {
   const connection = await mysql.createConnection({
     "in-mum-web1188.main-hosting.eu",
     3306,
-    "u114316720_vantageadmin,
+    "u114316720_vantageadmin",
     "M*]/CBp0",
   });
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`u114316720_vantage\`;`);
