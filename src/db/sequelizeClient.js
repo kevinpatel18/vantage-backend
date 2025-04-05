@@ -16,9 +16,9 @@ async function initialize() {
   });
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
-  const sequelize = new Sequelize(database, user, password, {
-    host: host,
-    port: port,
+  const sequelize = new Sequelize("u114316720_vantage", "u114316720_vantageadmin", "M*]/CBp0", {
+    host: "in-mum-web1188.main-hosting.eu",
+    port: 3006,
     dialect: "mysql",
     logging: false,
     maxConcurrentQueries: 100,
