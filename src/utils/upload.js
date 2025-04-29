@@ -169,7 +169,7 @@ const getIpfsCid = async (filename) => {
 
     const response = await s3Client.send(command);
     console.log("response: ", response.Metadata?.cid);
-    return `https://happy-maroon-tarsier.myfilebase.com/ipfs/${response.Metadata?.cid}`;
+    return `https://ipfs.filebase.io/ipfs/${response.Metadata?.cid}`;
   } catch (error) {
     console.error("Error getting IPFS CID:", error);
     return null;

@@ -5,6 +5,7 @@ const testimonialsController = require("../controllers/testimonialsController");
 router.post("/store", testimonialsController.testimonialsAdd);
 router.put("/update/:id", testimonialsController.testimonialsUpdate);
 router.get("/list", testimonialsController.testimonialsGetAll);
+router.get("/adminlist", testimonialsController.testimonialsGetAdminAll);
 router.delete("/delete/:id", testimonialsController.testimonialsDelete);
 
 module.exports = router;

@@ -51,9 +51,27 @@ const contactDelete = (req, res, next) => {
       })
     );
 };
+const contactUpdateComment = (req, res, next) => {
+  const id = req.params.id;
+
+  contactService
+    .updateComment(id, req.body, req.user)
+    .then((contact) =>
+      res.status(200).send({
+        status: true,
+        data: " Data has been Updated ! ",
+      })
+    )
+    .catch((err) =>
+      res.status(400).send({
+        err: err.message,
+      })
+    );
+};
 
 module.exports = {
   contactAdd,
   contactGetAll,
   contactDelete,
+  contactUpdateComment,
 };

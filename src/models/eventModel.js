@@ -7,28 +7,8 @@ function model(sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
-      required: true,
-    },
-    rating: {
-      type: DataTypes.STRING,
-      required: true,
-    },
-    designation: {
-      type: DataTypes.STRING,
-      required: true,
-    },
-    companyName: {
-      type: DataTypes.STRING,
-      required: true,
-    },
-    review: {
-      type: DataTypes.TEXT("long"),
-      required: true,
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
       required: true,
     },
     isDeleted: {
@@ -45,7 +25,7 @@ function model(sequelize) {
     },
   };
 
-  return sequelize.define("testimonials", attributes, {
+  return sequelize.define("event", attributes, {
     freezeTableName: true,
   });
 }

@@ -27,6 +27,10 @@ function model(sequelize) {
       type: DataTypes.TEXT("long"),
       required: true,
     },
+    comment: {
+      type: DataTypes.TEXT("long"),
+      required: true,
+    },
     isDeleted: {
       type: DataTypes.BOOLEAN,
       required: true,

@@ -1,8 +1,8 @@
-const testimonialsService = require("../services/testimonialsService");
+const brandService = require("../services/brandService");
 
-const testimonialsAdd = (req, res) => {
-  testimonialsService
-    .register(req.body, req.user)
+const brandAdd = (req, res) => {
+  brandService
+    .register(req.body, req.file, req.user)
     .then(() =>
       res.status(200).send({
         status: true,
@@ -16,9 +16,9 @@ const testimonialsAdd = (req, res) => {
       })
     );
 };
-const testimonialsUpdate = (req, res) => {
-  testimonialsService
-    .update(req.body, req.params.id, req.user)
+const brandUpdate = (req, res) => {
+  brandService
+    .update(req.body, req.params.id, req.file, req.user)
     .then(() =>
       res.status(200).send({
         status: true,
@@ -33,29 +33,13 @@ const testimonialsUpdate = (req, res) => {
     );
 };
 
-const testimonialsGetAll = (req, res) => {
-  testimonialsService
+const brandGetAll = (req, res) => {
+  brandService
     .list(req.user, req.query.size, req.query.page)
-    .then((testimonials) => {
+    .then((brand) => {
       res.status(200).send({
         status: true,
-        data: testimonials,
-      });
-    })
-    .catch((err) => {
-      res.status(400).send({
-        status: false,
-        message: err.message,
-      });
-    });
-};
-const testimonialsGetAdminAll = (req, res) => {
-  testimonialsService
-    .adminlist(req.user, req.query.size, req.query.page)
-    .then((testimonials) => {
-      res.status(200).send({
-        status: true,
-        data: testimonials,
+        data: brand,
       });
     })
     .catch((err) => {
@@ -66,12 +50,12 @@ const testimonialsGetAdminAll = (req, res) => {
     });
 };
 
-const testimonialsDelete = (req, res, next) => {
+const brandDelete = (req, res, next) => {
   const id = req.params.id;
 
-  testimonialsService
+  brandService
     .soft_delete(id, req.user)
-    .then((testimonials) =>
+    .then((brand) =>
       res.status(200).send({
         status: true,
         data: " Data has been deleted ! ",
@@ -85,9 +69,8 @@ const testimonialsDelete = (req, res, next) => {
 };
 
 module.exports = {
-  testimonialsAdd,
-  testimonialsUpdate,
-  testimonialsGetAll,
-  testimonialsDelete,
-  testimonialsGetAdminAll,
+  brandAdd,
+  brandUpdate,
+  brandGetAll,
+  brandDelete,
 };

@@ -1,7 +1,7 @@
-const registerUserService = require("../services/registerUserService");
+const eventService = require("../services/eventService");
 
-const registerUserAdd = (req, res) => {
-  registerUserService
+const eventAdd = (req, res) => {
+  eventService
     .register(req.body, req.user)
     .then(() =>
       res.status(200).send({
@@ -16,14 +16,30 @@ const registerUserAdd = (req, res) => {
       })
     );
 };
-
-const registerUserGetAll = (req, res) => {
-  registerUserService
-    .list(req.user, req.query.size, req.query.page)
-    .then((registerUser) => {
+const eventUpdate = (req, res) => {
+  eventService
+    .update(req.body, req.params.id, req.user)
+    .then(() =>
       res.status(200).send({
         status: true,
-        data: registerUser,
+        data: "You have been Updated successfully!.",
+      })
+    )
+    .catch((err) =>
+      res.status(400).send({
+        status: false,
+        message: err.message,
+      })
+    );
+};
+
+const eventGetAll = (req, res) => {
+  eventService
+    .list(req.user, req.query.size, req.query.page)
+    .then((event) => {
+      res.status(200).send({
+        status: true,
+        data: event,
       });
     })
     .catch((err) => {
@@ -34,29 +50,12 @@ const registerUserGetAll = (req, res) => {
     });
 };
 
-const registerUserDelete = (req, res, next) => {
+const eventDelete = (req, res, next) => {
   const id = req.params.id;
 
-  registerUserService
+  eventService
     .soft_delete(id, req.user)
-    .then((registerUser) =>
-      res.status(200).send({
-        status: true,
-        data: " Data has been deleted ! ",
-      })
-    )
-    .catch((err) =>
-      res.status(400).send({
-        err: err.message,
-      })
-    );
-};
-const registerUserComment = (req, res, next) => {
-  const id = req.params.id;
-
-  registerUserService
-    .updateComment(id, req.user)
-    .then((registerUser) =>
+    .then((event) =>
       res.status(200).send({
         status: true,
         data: " Data has been deleted ! ",
@@ -70,8 +69,8 @@ const registerUserComment = (req, res, next) => {
 };
 
 module.exports = {
-  registerUserAdd,
-  registerUserGetAll,
-  registerUserDelete,
-  registerUserComment,
+  eventAdd,
+  eventUpdate,
+  eventGetAll,
+  eventDelete,
 };

@@ -7,5 +7,7 @@ app.use("/registerUser", require("./registerUserRoute"));
 app.use("/testimonials", require("./testimonialsRoute"));
 app.use("/useCase", require("./useCaseRoute"));
 app.use("/gallery", require("./galleryRoute"));
+app.use("/brand", require("./brandRoute"));
+app.use("/event", require("./eventRoute"));
 
 module.exports = app;

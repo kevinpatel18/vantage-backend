@@ -3,30 +3,34 @@ const { Op } = require("sequelize");
 const { getIpfsCid } = require("../utils/upload");
 
 async function register(data, file, user) {
-  if (
-    await db.useCase.findOne({
-      where: {
-        phoneNo: data.phoneNo,
-      },
-    })
-  ) {
+  let findUseCase = await db.useCase.findOne({
+    where: {
+      phoneNo: data.phoneNo,
+    },
+  });
+  if (!findUseCase) {
     throw new Error("You already upload this useCase.");
   }
-  const newData = {
-    name: data.name,
-    email: data.email,
-    phoneNo: data.phoneNo,
-    processName: data.processName,
-    description: data.description,
-    isDeleted: false,
-  };
-  if (file) {
-    let url = await getIpfsCid(file.filename);
-    console.log("url: ", url);
 
-    newData.filePath = url;
+  if (findUseCase) {
+    const newData = {
+      name: data.name,
+      email: data.email,
+      phoneNo: data.phoneNo,
+      processName: data.processName,
+      description: data.description,
+      isDeleted: false,
+    };
+    if (file) {
+      let url = await getIpfsCid(file.filename);
+      console.log("url: ", url);
+
+      newData.filePath = url;
+    }
+    return await db.useCase.update(newData, {
+      where: { id: findUseCase.id },
+    });
   }
-  return await db.useCase.create(newData);
 }
 
 async function list(user, size, page) {

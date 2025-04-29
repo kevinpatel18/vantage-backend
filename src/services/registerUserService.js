@@ -27,8 +27,6 @@ async function register(data, user) {
 }
 
 async function list(user, size, page) {
-  let limit = parseInt(size);
-  let offset = parseInt(page);
   const sqlQuery = {
     where: { isDeleted: false },
     order: [["updatedAt", "DESC"]],
@@ -41,7 +39,10 @@ async function list(user, size, page) {
     ],
   };
 
-  if (limit) {
+  if (size) {
+    let limit = parseInt(size);
+    let offset = parseInt(page);
+
     sqlQuery.limit = limit;
     sqlQuery.offset = offset;
   }
@@ -70,5 +71,22 @@ async function soft_delete(id, user) {
     throw new Error("Register User does not exists");
   }
 }
+async function updateComment(id, data, user) {
+  if (
+    await db.registerUser.findOne({
+      where: { id: id },
+    })
+  ) {
+    const newData = {
+      comment: data.comment,
+    };
 
-module.exports = { register, list, soft_delete };
+    await db.registerUser.update(newData, {
+      where: { id: id },
+    });
+  } else {
+    throw new Error("Register User does not exists");
+  }
+}
+
+module.exports = { register, list, soft_delete, updateComment };

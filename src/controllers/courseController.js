@@ -67,6 +67,39 @@ const courseUpdate = (req, res) => {
       });
     });
 };
+const courseAdminGetAll = (req, res) => {
+  courseService
+    .adminList(req.user, req.query.size, req.query.page)
+    .then((course) => {
+      res.status(200).send({
+        status: true,
+        data: course,
+      });
+    })
+    .catch((err) => {
+      res.status(400).send({
+        status: false,
+        message: err.message,
+      });
+    });
+};
+const courseDuplicate = (req, res) => {
+  const id = req.params.id;
+  courseService
+    .duplicate(id, req.user)
+    .then((course) => {
+      res.status(200).send({
+        status: true,
+        data: "Your Data has been Updated",
+      });
+    })
+    .catch((err) => {
+      res.status(400).send({
+        status: false,
+        message: err.message,
+      });
+    });
+};
 
 const courseDelete = (req, res, next) => {
   const id = req.params.id;
@@ -92,4 +125,6 @@ module.exports = {
   courseGetById,
   courseUpdate,
   courseDelete,
+  courseAdminGetAll,
+  courseDuplicate,
 };

@@ -8,6 +8,7 @@ async function register(data, user) {
     designation: data.designation,
     companyName: data.companyName,
     review: data.review,
+    status: data.status,
     isDeleted: false,
   };
 
@@ -15,6 +16,25 @@ async function register(data, user) {
 }
 
 async function list(user, size, page) {
+  let limit = parseInt(size);
+  let offset = parseInt(page);
+  const sqlQuery = {
+    where: { isDeleted: false, status: true },
+    order: [["updatedAt", "DESC"]],
+  };
+
+  if (limit) {
+    sqlQuery.limit = limit;
+    sqlQuery.offset = offset;
+  }
+
+  const list = await db.testimonials.findAndCountAll(sqlQuery);
+
+  if (list) {
+    return list;
+  }
+}
+async function adminlist(user, size, page) {
   let limit = parseInt(size);
   let offset = parseInt(page);
   const sqlQuery = {
@@ -45,6 +65,7 @@ async function update(data, id, user) {
       designation: data.designation,
       companyName: data.companyName,
       review: data.review,
+      status: data.status,
     };
 
     await db.testimonials.update(newData, {
@@ -71,4 +92,4 @@ async function soft_delete(id, user) {
   }
 }
 
-module.exports = { register, list, update, soft_delete };
+module.exports = { register, list, update, soft_delete, adminlist };

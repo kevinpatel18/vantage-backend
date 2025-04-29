@@ -52,6 +52,26 @@ function model(sequelize) {
       type: DataTypes.STRING,
       required: true,
     },
+    aboutUs: {
+      type: DataTypes.TEXT("long"),
+      required: true,
+    },
+    winningAward: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    completedProject: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    clientReview: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    teamMember: {
+      type: DataTypes.STRING,
+      required: true,
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       required: true,

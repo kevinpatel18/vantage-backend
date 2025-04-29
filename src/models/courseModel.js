@@ -59,6 +59,10 @@ function model(sequelize) {
       type: DataTypes.STRING,
       required: true,
     },
+    status: {
+      type: DataTypes.BOOLEAN,
+      required: true,
+    },
     isDeleted: {
       type: DataTypes.BOOLEAN,
       required: true,

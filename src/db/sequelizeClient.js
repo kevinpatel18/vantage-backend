@@ -43,6 +43,8 @@ async function initialize() {
   db.testimonials = require("../models/testimonialsModel")(sequelize);
   db.useCase = require("../models/useCaseModel")(sequelize);
   db.gallery = require("../models/galleryModel")(sequelize);
+  db.brand = require("../models/brandModel")(sequelize);
+  db.event = require("../models/eventModel")(sequelize);
 
   // Sync models with database
   try {

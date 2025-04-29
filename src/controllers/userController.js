@@ -4,7 +4,13 @@ const jwt = require("jsonwebtoken");
 const adminUserLogin = async (req, res) => {
   var username = req.body.email;
   var pass = req.body.password;
-
+  console.log("username: ", username);
+  console.log(
+    "pass: ",
+    await db.userDetails.findOne({
+      where: { role: "admin", isDeleted: false },
+    })
+  );
   let checkuser = await db.userDetails.findOne({
     where: { email: username, role: "admin", isDeleted: false },
   });
@@ -90,6 +96,11 @@ const updateAdminProfile = async (req, res) => {
       email: req.body.email,
       phoneNo: req.body.phoneNo,
       address: req.body.address,
+      aboutUs: req.body.aboutUs,
+      winningAward: req.body.winningAward,
+      completedProject: req.body.completedProject,
+      clientReview: req.body.clientReview,
+      teamMember: req.body.teamMember,
     };
 
     await db.userDetails.update(newData, {

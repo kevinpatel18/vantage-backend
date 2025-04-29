@@ -22,6 +22,8 @@ router.put(
 
 router.get("/listbyid/:id", courseController.courseGetById);
 router.get("/list", courseController.courseGetAll);
+router.get("/adminlist", courseController.courseAdminGetAll);
 router.delete("/delete/:id", verifyToken, courseController.courseDelete);
+router.get("/duplicate/:id", verifyToken, courseController.courseDuplicate);
 
 module.exports = router;
