@@ -1,6 +1,6 @@
 module.exports = {
   api: {
-    port: 3006,
+    port: 8000,
     root: "/api",
   },
 
