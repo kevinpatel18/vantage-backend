@@ -9,7 +9,11 @@ async function register(data, file, user) {
     },
   });
   if (!findUseCase) {
-    throw new Error("You already upload this useCase.");
+    throw new Error("You are not verified. Please contact to admin.");
+  }
+
+  if (!findUseCase.isActive) {
+    throw new Error("You are not Active User. Please contact to admin.");
   }
 
   if (findUseCase) {

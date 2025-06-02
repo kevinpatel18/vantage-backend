@@ -55,11 +55,11 @@ const registerUserComment = (req, res, next) => {
   const id = req.params.id;
 
   registerUserService
-    .updateComment(id, req.user)
+    .updateComment(id, req.body, req.user)
     .then((registerUser) =>
       res.status(200).send({
         status: true,
-        data: " Data has been deleted ! ",
+        data: " Data has been updated ! ",
       })
     )
     .catch((err) =>

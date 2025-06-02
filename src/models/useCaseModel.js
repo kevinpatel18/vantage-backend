@@ -35,6 +35,10 @@ function model(sequelize) {
       type: DataTypes.BOOLEAN,
       required: true,
     },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      required: true,
+    },
     createdBy: {
       type: DataTypes.STRING,
       required: true,

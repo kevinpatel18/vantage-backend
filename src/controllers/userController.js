@@ -101,6 +101,10 @@ const updateAdminProfile = async (req, res) => {
       completedProject: req.body.completedProject,
       clientReview: req.body.clientReview,
       teamMember: req.body.teamMember,
+      facebookLink: req.body.facebookLink,
+      twitterLink: req.body.twitterLink,
+      linkedinLink: req.body.linkedinLink,
+      instagramLink: req.body.instagramLink,
     };
 
     await db.userDetails.update(newData, {

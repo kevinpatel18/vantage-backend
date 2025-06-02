@@ -21,6 +21,12 @@ module.exports = {
     user: "u114316720_vantageadmin",
     password: "M*]/CBp0",
     database: "u114316720_vantage",
+    dialectOptions: {
+      ssl: {
+        require: false,
+        rejectUnauthorized: false,
+      },
+    },
   },
 
   uploads: {

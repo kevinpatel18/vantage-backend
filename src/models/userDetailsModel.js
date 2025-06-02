@@ -72,6 +72,22 @@ function model(sequelize) {
       type: DataTypes.STRING,
       required: true,
     },
+    facebookLink: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    twitterLink: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    linkedinLink: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    instagramLink: {
+      type: DataTypes.STRING,
+      required: true,
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       required: true,
